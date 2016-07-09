@@ -2,9 +2,6 @@ package com.chinasoft.service;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import com.chinasoft.dao.UsersDAO;
 import com.chinasoft.pojo.Users;
 
@@ -23,6 +20,12 @@ public class UsersService {
 
 	// 这一层可以返回任意类型，不用通action层只能返回String
 	// 此层也可以传参数
+	/**
+	 * 用户登录
+	 * @param users
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
 	public Users login(Users users) {
 		List<Users> list = usersDAO.findByExample(users);
 		if (list.size() > 0) {
@@ -32,6 +35,11 @@ public class UsersService {
 		}
 	}
 
+	/**
+	 * 用户注册
+	 * @param users
+	 * @return
+	 */
 	public boolean register(Users users) {
 		boolean flag = true;
 		try {
@@ -42,6 +50,56 @@ public class UsersService {
 		}
 		return flag;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Users> findByUAccount(Object UAccount) {
+		return usersDAO.findByUAccount(UAccount);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Users> findByExample(Users user) {
+		return usersDAO.findByExample(user);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Users> findAll(){
+		return usersDAO.findAll();
+	} 
+	
+	/**
+	 * 新增用户
+	 * @param user
+	 */
+	public void save(Users user){
+		usersDAO.save(user);
+	}
+	
+	
+	/**
+	 * 更新用户信息
+	 * @param user
+	 */
+	public void update(Users user) {
+		usersDAO.update(user);
+	}
+	
+	/**
+	 * 根据用户ID查询用户
+	 * @param id
+	 * @return
+	 */
+	public Users findById(Integer id) {
+		return usersDAO.findById(id);
+	}
+	
+	/**
+	 * 删除用户
+	 * @param user
+	 */
+	public void delete(Users user) {
+		usersDAO.delete(user);
+	}
+	
 
 
 }

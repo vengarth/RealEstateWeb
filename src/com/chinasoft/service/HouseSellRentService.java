@@ -15,23 +15,33 @@ public class HouseSellRentService {
 	public void setHouseSellRentDAO(HouseSellRentDAO houseSellRentDAO) {
 		this.houseSellRentDAO = houseSellRentDAO;
 	}
-	
-	public List<HouseSellRent> getRentInfo(){
-//		List<HouseSellRent> list = houseSellRentDAO.getRentInfo();
+
+	/**
+	 * 获取房屋出租信息供首页显示，4条
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<HouseSellRent> getRentInfo() {
 		List<HouseSellRent> list = houseSellRentDAO.findAll();
-		
-		int length = list.size();
-//		return list.subList(length - 4, length); //返回最后4条
-		
-		return list.subList(0, 4); //返回前4条
+		// int length = list.size();
+		// return list.subList(length - 4, length); //返回最后4条
+		return list.subList(0, 4); // 返回前4条
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<HouseSellRent> findAll(){
-		return houseSellRentDAO.findAll().subList(0, 4);
+		List<HouseSellRent> list = houseSellRentDAO.findAll();
+		return list;
 	}
 	
+	public HouseSellRent findById(Integer id){
+		return houseSellRentDAO.findById(id);
+	}
 	
+	public void delete(HouseSellRent house){
+		houseSellRentDAO.delete(house);
+	}
+
 	
 
 }

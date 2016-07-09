@@ -2,13 +2,13 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<!-- action -->
-	
-<!-- 	<package name="indexManage" namespace="/" extends="struts-default"> -->
-<!-- 		<action name="im" class="IndexAction"> -->
-<!-- 			<result name="success">index.jsp</result> -->
-<!-- 			<result name="error">register.jsp</result> -->
-<!-- 		</action> -->
-<!-- 	</package> -->
+
+	<!-- <package name="indexManage" namespace="/" extends="struts-default"> -->
+	<!-- <action name="im" class="IndexAction"> -->
+	<!-- <result name="success">index.jsp</result> -->
+	<!-- <result name="error">register.jsp</result> -->
+	<!-- </action> -->
+	<!-- </package> -->
 
 	<package name="usersManage" namespace="/" extends="struts-default">
 		<action name="im" class="IndexAction">
@@ -29,6 +29,9 @@
 				<param name="actionName">im</param>
 				<param name="method">LoadInfo</param>
 			</result>
+
+			<result name="admin_update_success">admin.jsp</result>
+
 		</action>
 	</package>
 
@@ -50,6 +53,101 @@
 	</package>
 
 
+
+	<package name="adminManage" namespace="/"
+		extends="struts-default, json-default">
+		<action name="admin_um" class="HouseSellRentAction">
+			<result name="success">index.jsp</result>
+			<result name="error">testOutput.jsp</result>
+		</action>
+
+		<action name="json_queryUser" class="JsonAction" method="json_findUser">
+			<result type="json" name="find_success">
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+
+		<action name="json_updateUser" class="JsonAction" method="json_updateUser">
+			<result type="json">
+				<param name="root">updateUserFlag</param>
+			</result>
+		</action>
+
+		<action name="json_saveUser" class="JsonAction" method="json_saveUser">
+			<result type="json">
+				<param name="root">saveUserFlag</param>
+			</result>
+		</action>
+
+		<action name="json_queryAllUser" class="JsonAction" method="json_findAllUser">
+			<result type="json" name="findAllUser_success">
+				<param name="root">dataMap_AllUser</param>
+			</result>
+		</action>
+
+
+		<action name="json_deleteUser" class="JsonAction" method="json_deleteUser">
+			<result type="json" name="deleteUser_success">
+				<param name="root">dataMap_AllUser</param>
+			</result>
+		</action>
+
+
+		<!-- 房屋管理 -->
+		<action name="json_queryAllHouse" class="AdministratorAction"
+			method="json_queryAllHouse">
+			<result type="json" name="findAllHouse_success">
+				<param name="root">dataMap_AllHouse</param>
+			</result>
+		</action>
+
+		<action name="json_deleteHouse" class="AdministratorAction" method="json_deleteHouse">
+			<result type="json" name="deleteHouse_success">
+				<param name="root">dataMap_AllHouse</param>
+			</result>
+		</action>
+		
+		<!-- 验证管理 -->
+		<action name="json_queryVeri" class="AdministratorAction" method="json_queryVeri">
+			<result type="json" name="findVeri_success">
+				<param name="root">dataMap_Veri</param>
+			</result>
+		</action>
+		<action name="json_updateVeri" class="AdministratorAction" method="json_updateVeri">
+			<result type="json" name="updateVeri_success">
+				<param name="root">dataMap_Veri</param>
+			</result>
+		</action>
+		
+		
+		<!--广告管理 -->
+		<action name="json_queryAllAd" class="AdministratorAction" method="json_queryAllAd">
+			<result type="json" name="findAllAd_success">
+				<param name="root">dataMap_Ad</param>
+			</result>
+		</action>
+		<action name="json_querySingleAd" class="AdministratorAction" method="json_querySingleAd">
+			<result type="json" name="findSignleAd_success">
+				<param name="root">dataMap_Ad</param>
+			</result>
+		</action>
+		<action name="json_updateAd" class="AdministratorAction" method="json_updateAd">
+			<result type="json">
+				<param name="root">dataMap_Ad</param>
+			</result>
+		</action>
+		<action name="json_saveAd" class="AdministratorAction" method="json_saveAd">
+			<result type="json">
+				<param name="root">dataMap_Ad</param>
+			</result>
+		</action>
+		<action name="json_deleteAd" class="AdministratorAction" method="json_deleteAd">
+			<result type="json">
+				<param name="root">dataMap_Ad</param>
+			</result>
+		</action>
+
+	</package>
 
 
 </struts>    

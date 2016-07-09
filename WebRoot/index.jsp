@@ -1,3 +1,4 @@
+<%@page import="com.chinasoft.pojo.Users"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -19,7 +20,6 @@
 
 <link href="css/index_nav_style.css" rel="stylesheet" type="text/css"
 	media="all" />
-
 <!--- start-mmmenu-script---->
 <link href="css/jquery.mmenu.all.css" type="text/css" rel="stylesheet" />
 <link href="css/house_style.css" type="text/css" rel="stylesheet" />
@@ -65,14 +65,18 @@
 
 <body>
 	<!--iframe导航页面中跳转加上 target="_parent"，使父页面刷新-->
-	<% if (session.getAttribute("users") == null) { %>
+	<% if (session.getAttribute("users") == null) { 
+	%>
 	<iframe id="header_nav" src="nav_model/header_nav.jsp" width="100%"
 		height="120px" style="border: 0px;" scrolling="no"></iframe>
-	<% } else { %>
-	<iframe id="header_nav" src="nav_model/header_nav_after.jsp" width="100%"
-		height="120px" style="border: 0px;" scrolling="no"></iframe>
+	<% } else { 
+		Users u = (Users) session.getAttribute("users");
+		System.out.println(u.getUAccount());
+	%>
+	<iframe id="header_nav" src="nav_model/header_nav_after.jsp"
+		width="100%" height="120px" style="border: 0px;" scrolling="no"></iframe>
 	<% }%>
-	
+
 	<!-- start slider -->
 	<div class="slider">
 		<!---start-image-slider---->
@@ -134,7 +138,7 @@
 										href="details.jsp"><img src="images/icon_4.png" alt=""></a>
 								</h3>
 							</div></li>
-						<li><img src="images/slider-image1.jpg" alt="image03" />
+						<li><img src="images/slider-image4.jpg" alt="image03" />
 							<div class="ei-title">
 								<h3 class="btn">19999</h3>
 								<h2>
@@ -153,7 +157,7 @@
 										href="details.jsp"><img src="images/icon_4.png" alt=""></a>
 								</h3>
 							</div></li>
-						<li><img src="images/slider-image2.jpg" alt="image04" />
+						<li><img src="images/slider-image1.jpg" alt="image04" />
 							<div class="ei-title">
 								<h3 class="btn">19999</h3>
 								<h2>
@@ -274,7 +278,7 @@
 				<div class="grids_of_4">
 					<c:forEach var="house" items="${houseSellEnterpriseList}">
 						<div class="grid1_of_4">
-							<a href="details.jsp"> <img src=${house.pics } alt="" />
+							<a href="<%=basePath %>details.jsp?${house.HId }"> <img src=${house.pics } alt="" />
 								<div style="height: 30px; padding-left: 2%; text-align: left;">
 									<h3>${house.title }</h3>
 								</div>
@@ -331,17 +335,9 @@
 			</div>
 		</div>
 	</div>
-	<!-- start footer -->
-	<!--<div class="footer_top">
-			<div class="wrap">
-				<div class="footer">
-					
-				</div>
-			</div>
-		</div>-->
 
 	<!--底部导航-->
-	<iframe src="nav_model/footer_nav.html" width="100%" height="325px"
+	<iframe src="nav_model/footer_nav.jsp" width="100%" height="325px"
 		style="border: 0px;" scrolling="no"></iframe>
 
 
